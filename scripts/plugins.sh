@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose run --rm wpcli wp plugin install ${PLUGIN} --activate
+docker-compose run --rm wpcli wp plugin install ${PLUGIN} --activate --allow-root

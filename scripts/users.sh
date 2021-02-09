@@ -1,3 +1,8 @@
 #!/bin/bash
 
-docker-compose run --rm wpcli wp user create $USER_USER_WP $USER_EMAIL_WP --role=editor --user_pass=$USER_PASS_WP
+USERNAME=$1
+PASSWORD=$2
+EMAIL=${3:-$USERNAME}
+ROLE=${4:-"editor"}
+
+docker-compose run --rm wpcli wp --allow-root user create $USERNAME $EMAIL --user_pass=$PASSWORD --role=$ROLE

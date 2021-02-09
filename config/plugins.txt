@@ -1,6 +1,6 @@
 amp
 google-site-kit
-quicklink
 web-stories
 wordpress-seo
 wp-ses
+updraftplus

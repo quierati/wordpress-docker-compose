@@ -1,7 +1,6 @@
 #!/bin/bash
 _os="`uname`"
-_now=$(date +"%m_%d_%Y")
-_file="wp-data/data_$_now.sql"
+_file="data_$(date +"%Y%m%d-%s").sql"
 
 # Export dump
 EXPORT_COMMAND='exec mysqldump "$MYSQL_DATABASE" -uroot -p"$MYSQL_ROOT_PASSWORD"'
@@ -12,3 +11,7 @@ if [[ $_os == "Darwin"* ]] ; then
 else
   sed -i 1,1d $_file # Removes the password warning from the file
 fi
+
+gzip -5q $_file
+
+aws s3 cp $_file.gz s3://geraloto-wp-backup/
